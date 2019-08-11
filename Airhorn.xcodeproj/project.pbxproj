@@ -11,6 +11,7 @@
 		A252FD9822FFA2F000C2C2B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A252FD9722FFA2F000C2C2B7 /* ViewController.swift */; };
 		A252FD9A22FFA2F100C2C2B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A252FD9922FFA2F100C2C2B7 /* Assets.xcassets */; };
 		A252FD9D22FFA2F100C2C2B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A252FD9B22FFA2F100C2C2B7 /* Main.storyboard */; };
+		A252FDA622FFA68E00C2C2B7 /* airhorn.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A252FDA522FFA68E00C2C2B7 /* airhorn.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A252FD9C22FFA2F100C2C2B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A252FD9E22FFA2F100C2C2B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A252FD9F22FFA2F100C2C2B7 /* Airhorn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Airhorn.entitlements; sourceTree = "<group>"; };
+		A252FDA522FFA68E00C2C2B7 /* airhorn.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = airhorn.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				A252FD9522FFA2F000C2C2B7 /* AppDelegate.swift */,
 				A252FD9722FFA2F000C2C2B7 /* ViewController.swift */,
 				A252FD9922FFA2F100C2C2B7 /* Assets.xcassets */,
+				A252FDA522FFA68E00C2C2B7 /* airhorn.m4a */,
 				A252FD9B22FFA2F100C2C2B7 /* Main.storyboard */,
 				A252FD9E22FFA2F100C2C2B7 /* Info.plist */,
 				A252FD9F22FFA2F100C2C2B7 /* Airhorn.entitlements */,
@@ -122,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A252FD9A22FFA2F100C2C2B7 /* Assets.xcassets in Resources */,
+				A252FDA622FFA68E00C2C2B7 /* airhorn.m4a in Resources */,
 				A252FD9D22FFA2F100C2C2B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
