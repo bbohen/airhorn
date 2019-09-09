@@ -1,0 +1,10 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+_Name=Airhorn
+_Comment=Conveniently play airhorn sounds
+Icon=airhorn
+X-XFCE-Module=airhorn
+X-XFCE-Internal=false
+X-XFCE-Unique=false
+X-XFCE-API=2.0
