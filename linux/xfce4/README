@@ -1,0 +1,5 @@
+xfce4-airhorn
+=============
+
+An Xfce4 panel plugin that plays an airhorn sound when clicked. Middle-click
+stops all sounds.
