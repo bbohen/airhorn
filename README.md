@@ -2,7 +2,7 @@
 
 App for macOS & linux that just plays the airhorn noise when you click it.
 
-## Mac OS
+## MacOS
 
 Unzip the latest Airhorn.app release from `/releases` and live your airhorn-fueled dreams.
 
