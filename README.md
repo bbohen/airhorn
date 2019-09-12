@@ -13,4 +13,9 @@ Unzip the latest Airhorn.app release from `/releases` and live your airhorn-fuel
 
 ## Linux
 
-Check out the [xfce4 docs](linux/xfce4) for more about linux support.
+- `cd airhorn/linux/xfce4`
+- `./autogen.sh --prefix=/usr`
+- `make`
+- `sudo make install`
+
+Check out the [docs](linux/xfce4) for more about linux support.
