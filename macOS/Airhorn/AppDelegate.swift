@@ -9,70 +9,84 @@
 import AVFoundation
 import Cocoa
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, AVAudioPlayerDelegate {
-
+    
     var players: [URL: AVAudioPlayer] = [:]
     var duplicatePlayers: [AVAudioPlayer] = []
-    
-    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+    var statusItem: NSStatusItem!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        if let button = statusItem.button {
-            button.image = NSImage(named:NSImage.Name("Trumpet"))
-            button.action = #selector(self.clickHandler(sender:))
-            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        // Create status bar item
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        
+        guard let button = statusItem.button else {
+            NSLog("❌ ERROR: Could not create status bar button")
+            return
         }
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        
+        // Set up the icon
+        if let trumpetImage = NSImage(named: "Trumpet") {
+            trumpetImage.isTemplate = true
+            button.image = trumpetImage
+        } else {
+            // Fallback to emoji if image doesn't load
+            button.title = "📯"
+        }
+        
+        button.action = #selector(self.clickHandler(sender:))
+        button.sendAction(on: [.leftMouseUp, .rightMouseUp])
     }
     
     @objc func clickHandler(sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
         
         if event.type == NSEvent.EventType.rightMouseUp {
+            // Right click = quit
             NSApplication.shared.terminate(self)
         } else {
-            let path = Bundle.main.path(forResource: "airhorn", ofType: "m4a")!
+            // Left click = play airhorn sound
+            guard let path = Bundle.main.path(forResource: "airhorn", ofType: "m4a") else {
+                NSLog("❌ Could not find airhorn.m4a")
+                return
+            }
+            
             let soundFileNameURL = URL(fileURLWithPath: path)
             
-            if let player = players[soundFileNameURL] { //player for sound has been found
-                
-                if !player.isPlaying { //player is not in use, so use that one
+            if let player = players[soundFileNameURL] {
+                // Player for sound has been found
+                if !player.isPlaying {
+                    // Player is not in use, so use that one
                     player.prepareToPlay()
                     player.play()
-                } else { // player is in use, create a new, duplicate, player and use that instead
-                    
+                } else {
+                    // Player is in use, create a new duplicate player
                     do {
                         let duplicatePlayer = try AVAudioPlayer(contentsOf: soundFileNameURL)
-                        
                         duplicatePlayer.delegate = self
-                        //assign delegate for duplicatePlayer so delegate can remove the duplicate once it's stopped playing
-                        
                         duplicatePlayers.append(duplicatePlayer)
-                        //add duplicate to array so it doesn't get removed from memory before finishing
-                        
                         duplicatePlayer.prepareToPlay()
                         duplicatePlayer.play()
                     } catch let error {
-                        print(error.localizedDescription)
+                        NSLog("❌ Error creating duplicate player: \(error.localizedDescription)")
                     }
                 }
-            } else { //player has not been found, create a new player with the URL if possible
-                
+            } else {
+                // Player has not been found, create a new player
                 do {
                     let player = try AVAudioPlayer(contentsOf: soundFileNameURL)
                     players[soundFileNameURL] = player
                     player.prepareToPlay()
                     player.play()
                 } catch let error {
-                    print(error.localizedDescription)
+                    NSLog("❌ Error creating player: \(error.localizedDescription)")
                 }
             }
         }
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        // Remove duplicate players after they finish playing
+        duplicatePlayers.removeAll { $0 == player }
     }
 }
 
